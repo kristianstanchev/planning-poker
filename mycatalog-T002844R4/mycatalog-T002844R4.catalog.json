@@ -1,0 +1,70 @@
+{
+  "id": "mycatalog-<<<TENANT_ID>>>",
+  "technicalName": "mycatalog",
+  "name": "My Catalog",
+  "description": "",
+  "owner": "<<<TENANT_ID>>>",
+  "inputs": [],
+  "commands": [
+    {
+      "configuration": {
+        "values": [],
+        "output": {
+          "FinalStatus": "Github Status is OK"
+        },
+        "executors": [
+          {
+            "execute": "http-sapcp:HttpRequest:1",
+            "input": {
+              "method": "GET",
+              "sccTechnicalUserPropagation": "false",
+              "url": "https://api.github.com",
+              "sccEnabled": "false"
+            },
+            "alias": "CheckUrl",
+            "description": null,
+            "progressMessage": null,
+            "initialDelay": null,
+            "pause": null,
+            "when": null,
+            "validate": null,
+            "autoRetry": null,
+            "repeat": null,
+            "errorMessages": [],
+            "dryRun": null
+          },
+          {
+            "execute": "jira-sapcp:CreateJiraIssue:1",
+            "input": {},
+            "alias": "JiraTicket",
+            "description": null,
+            "progressMessage": null,
+            "initialDelay": null,
+            "pause": null,
+            "when": null,
+            "validate": null,
+            "autoRetry": null,
+            "repeat": null,
+            "errorMessages": [],
+            "dryRun": null
+          }
+        ],
+        "listeners": []
+      },
+      "id": "mycatalog-<<<TENANT_ID>>>:CheckConcourse:1",
+      "name": "CheckConcourse",
+      "description": null,
+      "catalog": "mycatalog-<<<TENANT_ID>>>",
+      "version": 1,
+      "inputKeys": {},
+      "outputKeys": {
+        "FinalStatus": {
+          "type": "string",
+          "sensitive": false,
+          "description": ""
+        }
+      },
+      "tags": {}
+    }
+  ]
+}
